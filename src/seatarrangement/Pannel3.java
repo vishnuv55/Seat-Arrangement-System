@@ -13,15 +13,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author vishnu
  */
 public class Pannel3 extends javax.swing.JPanel {
 String[] rooms=new String[20];
-int[] dept=new int[15];
+String[] dept=new String[15];
 int[][] arrange=new int[200][10];
-int n;
+int n,m;
 int bench;
 /**
      * Creates new form Pannel3
@@ -76,18 +77,20 @@ public void select(){
         
         i=0;
         if(y1.isSelected()){
-            dept[i]=1;
+            dept[i]="cs";
             i++;
         }if(y2.isSelected()){
-            dept[i]=2;
+            dept[i]="ec";
             i++;
         }if(y3.isSelected()){
-            dept[i]=3;
+            dept[i]="eee";
             i++;
-        }if(y4.isSelected()){
+        }
+        /*if(y4.isSelected()){
             dept[i]=4;
             i++;
-        }if(y5.isSelected()){
+        }
+        if(y5.isSelected()){
             dept[i]=5;
             i++;
         }if(y6.isSelected()){
@@ -114,8 +117,8 @@ public void select(){
         }if(y12.isSelected()){
             dept[i]=12;
             i++;
-        }
-        int m=i;
+        }*/
+        m=i;
         for(i=0;i<m;i++){
             System.out.println(dept[i]);
         }
@@ -405,7 +408,18 @@ public void NoOfBench(){
                 do{
                     for(int j=0;j<bench;j++){
                         if(rs.next()){
-                            arrange[j][i]=rs.getInt(2);
+                            for(int d=0;d<m;d++){
+                                if (dept[d].equalsIgnoreCase(rs.getString(5))){
+                                    arrange[j][i]=rs.getInt(2);
+                                    break;
+                                }
+                                else{
+                                    
+                                }
+                            }
+                            if(arrange[j][i]==0){
+                                j--;
+                            }
                         }
                         else{
                             c=1;
@@ -413,6 +427,10 @@ public void NoOfBench(){
                         }
                     }
                     i++;
+                    if(i>2){
+                        JOptionPane.showMessageDialog(null, "arrangement not possible");
+                        break;
+                    }
                 }while(c==0);
                 for(int k=0;k<bench;k++){
                     for(int j=0;j<i;j++){
