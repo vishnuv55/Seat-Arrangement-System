@@ -13,11 +13,11 @@ import java.awt.GridBagLayout;
  * @author vishnu
  */
 public class Arrange extends javax.swing.JFrame {
-GridBagLayout layout=new GridBagLayout();
-Pannel1 p1;
-Panel2 p2;
-Pannel3 p3;
-ViewArrangement p4;
+    GridBagLayout layout=new GridBagLayout();
+    Pannel1 p1;
+    Panel2 p2;
+    Pannel3 p3;
+    ViewArrangement p4;
     /**
      * Creates new form Arrange
      */
@@ -158,7 +158,7 @@ ViewArrangement p4;
                 .addComponent(jButton4)
                 .addGap(18, 18, 18)
                 .addComponent(jButton5)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         DynamicPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -167,7 +167,7 @@ ViewArrangement p4;
         DynamicPanel.setLayout(DynamicPanelLayout);
         DynamicPanelLayout.setHorizontalGroup(
             DynamicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 798, Short.MAX_VALUE)
+            .addGap(0, 891, Short.MAX_VALUE)
         );
         DynamicPanelLayout.setVerticalGroup(
             DynamicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,7 +193,9 @@ ViewArrangement p4;
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
