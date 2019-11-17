@@ -120,7 +120,8 @@ ViewArrangement p4;
         });
 
         jButton6.setBackground(new java.awt.Color(255, 153, 0));
-        jButton6.setText("jButton6");
+        jButton6.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jButton6.setText("VIEW ARRANGEMENT");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
