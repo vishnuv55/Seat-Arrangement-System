@@ -170,7 +170,7 @@ public void table(){
             // TODO add your handling code here:
             String url1 ="jdbc:mysql://localhost/sas?autoReconnect=true&serverTimezone=UTC&useSSL=False&allowPublicKeyRetrieval=true";
             Connection con = DriverManager.getConnection(url1, "root", "");
-            String sql1="INSERT INTO `student`(`reg_no`, `rollno`, `name`, `sem`, `department`) VALUES (?,?,?,?,?)";
+            String sql1="INSERT INTO `student`(`reg_no`, `rollno`, `name`, `branch`) VALUES (?,?,?,?)";
             
             fis = new FileInputStream(url);
             wb = WorkbookFactory.create(fis);

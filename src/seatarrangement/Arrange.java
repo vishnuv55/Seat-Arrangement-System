@@ -17,6 +17,7 @@ GridBagLayout layout=new GridBagLayout();
 Pannel1 p1;
 Panel2 p2;
 Pannel3 p3;
+ViewArrangement p4;
     /**
      * Creates new form Arrange
      */
@@ -25,6 +26,7 @@ Pannel3 p3;
         p1=new Pannel1();
         p2=new Panel2();
         p3=new Pannel3();
+        p4=new ViewArrangement();
         DynamicPanel.setLayout(layout);
         GridBagConstraints c=new GridBagConstraints();
         c.gridx=0;
@@ -36,9 +38,15 @@ Pannel3 p3;
         c.gridx=0;
         c.gridy=0;
         DynamicPanel.add(p3,c);
+        c.gridx=0;
+        c.gridy=0;
+        DynamicPanel.add(p4,c);
+        c.gridx=0;
+        c.gridy=0;
         p1.setVisible(true);
         p2.setVisible(false);
-        p3.setVisible(false);        
+        p3.setVisible(false); 
+        p4.setVisible(false);
     }
 
     /**
@@ -57,6 +65,7 @@ Pannel3 p3;
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         DynamicPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -110,6 +119,14 @@ Pannel3 p3;
             }
         });
 
+        jButton6.setBackground(new java.awt.Color(255, 153, 0));
+        jButton6.setText("jButton6");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -123,6 +140,7 @@ Pannel3 p3;
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(163, 163, 163))
+            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +151,9 @@ Pannel3 p3;
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(211, 211, 211)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(161, 161, 161)
                 .addComponent(jButton4)
                 .addGap(18, 18, 18)
                 .addComponent(jButton5)
@@ -194,6 +214,7 @@ Pannel3 p3;
         p1.setVisible(true);
         p2.setVisible(false);
         p3.setVisible(false);
+        p4.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -201,12 +222,14 @@ Pannel3 p3;
         p1.setVisible(false);
         p2.setVisible(true);
         p3.setVisible(false);
+        p4.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         p1.setVisible(false);
         p2.setVisible(false);
+        p4.setVisible(false);
         p3.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -214,6 +237,14 @@ Pannel3 p3;
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        p1.setVisible(false);
+        p2.setVisible(false);
+        p3.setVisible(false);
+        p4.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -257,6 +288,7 @@ Pannel3 p3;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

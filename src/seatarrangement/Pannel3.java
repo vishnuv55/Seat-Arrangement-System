@@ -5,6 +5,7 @@
  */
 package seatarrangement;
 
+import java.awt.GridBagLayout;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,11 +20,11 @@ import javax.swing.JOptionPane;
  * @author vishnu
  */
 public class Pannel3 extends javax.swing.JPanel {
-String[] rooms=new String[20];
-String[] dept=new String[15];
-int[][] arrange=new int[200][10];
-int n,m;
-int bench;
+    String[] rooms=new String[20];
+    String[] dept=new String[15];
+    int[][] arrange=new int[500][10];
+    int n,m,flag;
+    int bench;
 /**
      * Creates new form Pannel3
      */
@@ -31,7 +32,7 @@ int bench;
         initComponents();
     }
     //To Store selected check box values
-public void select(){
+    public void select(){
     int i=0;
         if(c1.isSelected()){
             rooms[i]="411";
@@ -77,54 +78,56 @@ public void select(){
         
         i=0;
         if(y1.isSelected()){
-            dept[i]="cs";
+            dept[i]="S1CS";
             i++;
         }if(y2.isSelected()){
-            dept[i]="ec";
+            dept[i]="S1EC";
             i++;
         }if(y3.isSelected()){
-            dept[i]="eee";
+            dept[i]="S1EEE";
             i++;
         }
-        /*if(y4.isSelected()){
-            dept[i]=4;
+        if(y4.isSelected()){
+            dept[i]="S3CS";
             i++;
         }
         if(y5.isSelected()){
-            dept[i]=5;
+            dept[i]="S3EC";
             i++;
         }if(y6.isSelected()){
-            dept[i]=6;
+            dept[i]="S3EEE";
             i++;
         }if(y7.isSelected()){
-            dept[i]=7;
+            dept[i]="S5CSA";
+            i++;
+            dept[i]="S3CSB";
             i++;
         }if(y8.isSelected()){
-            dept[i]=8;
+            dept[i]="S5EC";
             i++;
         }
         if(y9.isSelected()){
-            dept[i]=9;
+            dept[i]="S5EEE";
             i++;
         }
         if(y10.isSelected()){
-            dept[i]=10;
+            dept[i]="S7CS";
             i++;
         }
         if(y11.isSelected()){
-            dept[i]=11;
+            dept[i]="S7EC";
             i++;
         }if(y12.isSelected()){
-            dept[i]=12;
+            dept[i]="S7EEE";
             i++;
-        }*/
+        }
         m=i;
         for(i=0;i<m;i++){
             System.out.println(dept[i]);
         }
 }
     //To Find the total no Of benches used in the seat arrangement
-public void NoOfBench(){
+    public void NoOfBench(){
     String url ="jdbc:mysql://localhost/sas?autoReconnect=true&serverTimezone=UTC&useSSL=False&allowPublicKeyRetrieval=true";
     bench=0;        
     try (Connection con = DriverManager.getConnection(url, "root", "")) {
@@ -145,8 +148,7 @@ public void NoOfBench(){
                 System.out.println("No Of Benches"+bench);
             }catch (SQLException ex) {
             Logger.getLogger(Panel2.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        }    
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -157,19 +159,17 @@ public void NoOfBench(){
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        buttonGroup3 = new javax.swing.ButtonGroup();
-        buttonGroup4 = new javax.swing.ButtonGroup();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         c1 = new javax.swing.JCheckBox();
         c2 = new javax.swing.JCheckBox();
         c3 = new javax.swing.JCheckBox();
+        c4 = new javax.swing.JCheckBox();
         c5 = new javax.swing.JCheckBox();
+        c6 = new javax.swing.JCheckBox();
+        c7 = new javax.swing.JCheckBox();
         c8 = new javax.swing.JCheckBox();
         c9 = new javax.swing.JCheckBox();
-        c4 = new javax.swing.JCheckBox();
         c10 = new javax.swing.JCheckBox();
         c11 = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
@@ -183,10 +183,10 @@ public void NoOfBench(){
         y8 = new javax.swing.JCheckBox();
         y10 = new javax.swing.JCheckBox();
         y9 = new javax.swing.JCheckBox();
-        c6 = new javax.swing.JCheckBox();
-        c7 = new javax.swing.JCheckBox();
         y11 = new javax.swing.JCheckBox();
         y12 = new javax.swing.JCheckBox();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -202,14 +202,19 @@ public void NoOfBench(){
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         jLabel2.setText("Rooms Used");
 
-        buttonGroup1.add(c1);
         c1.setText("411");
 
         c2.setText("412");
 
         c3.setText("413");
 
+        c4.setText("422");
+
         c5.setText("202");
+
+        c6.setText("201");
+
+        c7.setText("601");
 
         c8.setText("603");
 
@@ -219,8 +224,6 @@ public void NoOfBench(){
                 c6ActionPerformed(evt);
             }
         });
-
-        c4.setText("422");
 
         c10.setText("605");
         c10.addActionListener(new java.awt.event.ActionListener() {
@@ -264,13 +267,25 @@ public void NoOfBench(){
 
         y9.setText("3rd EEE");
 
-        c6.setText("201");
-
-        c7.setText("601");
-
         y11.setText("4th EC");
 
         y12.setText("4th EEE");
+
+        jButton2.setBackground(new java.awt.Color(255, 153, 0));
+        jButton2.setText("Reload");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setBackground(new java.awt.Color(255, 153, 0));
+        jButton3.setText("view Arrangement");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -281,28 +296,24 @@ public void NoOfBench(){
                     .addGroup(layout.createSequentialGroup()
                         .addGap(327, 327, 327)
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(183, 183, 183))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(294, 294, 294)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(155, 155, 155))
+                        .addGap(219, 219, 219))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(310, 310, 310)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(154, 154, 154))
+                        .addGap(190, 190, 190))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(179, 179, 179)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(c8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(c8, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                             .addComponent(c1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(c9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(c9, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(c10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(c10, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(c11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(c11, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
                                 .addGap(61, 61, 61))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(c2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -313,23 +324,13 @@ public void NoOfBench(){
                                 .addGap(18, 18, 18)
                                 .addComponent(c5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
-                        .addComponent(c6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(c6, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(c7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(20, 20, 20))
+                        .addComponent(c7, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                        .addGap(56, 56, 56))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(160, 160, 160)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(y1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(y2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(y3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(y4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(y5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(y7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
@@ -340,20 +341,40 @@ public void NoOfBench(){
                                 .addComponent(y10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(y11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(2, 2, 2)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(y6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(20, 20, 20)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(y6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(y12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(2, 2, 2))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(y12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(2, 2, 2)))))
-                .addGap(170, 170, 170))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(y1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(y2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(y3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(y4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(36, 36, 36)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(y5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton3)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))))
+                .addGap(134, 134, 134))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(75, 75, 75)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(c1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -370,7 +391,7 @@ public void NoOfBench(){
                     .addComponent(c10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(c11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(y1)
@@ -388,17 +409,21 @@ public void NoOfBench(){
                     .addComponent(y11)
                     .addComponent(y12))
                 .addGap(37, 37, 37)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(103, 103, 103))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        select();
-        NoOfBench();
-        String url ="jdbc:mysql://localhost/sas?autoReconnect=true&serverTimezone=UTC&useSSL=False&allowPublicKeyRetrieval=true";
-        try (Connection con = DriverManager.getConnection(url, "root", "")) {
+        
+            select();
+            NoOfBench();
+            String url ="jdbc:mysql://localhost/sas?autoReconnect=true&serverTimezone=UTC&useSSL=False&allowPublicKeyRetrieval=true";
+            try (Connection con = DriverManager.getConnection(url, "root", "")) {
                 String sql1="SELECT * FROM student";
                 //department='cs' OR department='ec' ORDER BY department ASC 
                 Statement st=con.createStatement();
@@ -409,12 +434,9 @@ public void NoOfBench(){
                     for(int j=0;j<bench;j++){
                         if(rs.next()){
                             for(int d=0;d<m;d++){
-                                if (dept[d].equalsIgnoreCase(rs.getString(5))){
-                                    arrange[j][i]=rs.getInt(2);
+                                if (dept[d].equalsIgnoreCase(rs.getString(4))){
+                                    arrange[j][i]=rs.getInt(1);
                                     break;
-                                }
-                                else{
-                                    
                                 }
                             }
                             if(arrange[j][i]==0){
@@ -427,21 +449,26 @@ public void NoOfBench(){
                         }
                     }
                     i++;
-                    if(i>2){
-                        JOptionPane.showMessageDialog(null, "arrangement not possible");
-                        break;
-                    }
                 }while(c==0);
+                flag=i;
+                if(i>3){
+                        JOptionPane.showMessageDialog(null, "arrangement not possible");
+                    }
                 for(int k=0;k<bench;k++){
-                    for(int j=0;j<i;j++){
+                    for(int j=0;j<flag;j++){
                         System.out.print(arrange[k][j]+"    ");
                     }
                     System.out.println("");
                 }
-        }catch (SQLException ex) {
-        Logger.getLogger(Pannel3.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+                ViewArrangement v=new ViewArrangement(arrange, rooms, bench);
+                
+//                String sql="SELECT * FROM student";
+//                Statement st1=con.createStatement();
+//                ResultSet rs1=st1.executeQuery(sql);                              
+            }catch (SQLException ex) {
+            Logger.getLogger(Pannel3.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void c6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c6ActionPerformed
@@ -452,12 +479,53 @@ public void NoOfBench(){
         // TODO add your handling code here:
     }//GEN-LAST:event_c6ActionPerformed1
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        for(int i=0;i<rooms.length;i++){
+            rooms[i]="";
+           
+        }
+        y1.setSelected(false);
+        y2.setSelected(false);
+        y3.setSelected(false);
+        y4.setSelected(false);
+        y5.setSelected(false);
+        y6.setSelected(false);
+        y7.setSelected(false);
+        y8.setSelected(false);
+        y9.setSelected(false);
+        y10.setSelected(false);
+        y11.setSelected(false);
+        y12.setSelected(false);
+        for(int i=0;i<dept.length;i++){
+            dept[i]="";
+        }
+        c1.setSelected(false);
+        c2.setSelected(false);
+        c3.setSelected(false);
+        c4.setSelected(false);
+        c5.setSelected(false);
+        c6.setSelected(false);
+        c7.setSelected(false);
+        c8.setSelected(false);
+        c9.setSelected(false);
+        c10.setSelected(false);
+        c11.setSelected(false);
+        
+        for(int k=0;k<bench;k++){
+                    for(int j=0;j<flag;j++){
+                        arrange[k][j]=0;
+                    }
+                }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JCheckBox c1;
     private javax.swing.JCheckBox c10;
     private javax.swing.JCheckBox c11;
@@ -470,6 +538,8 @@ public void NoOfBench(){
     private javax.swing.JCheckBox c8;
     private javax.swing.JCheckBox c9;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JCheckBox y1;
